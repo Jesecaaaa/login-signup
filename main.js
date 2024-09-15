@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle Slide Function
     function toggleSlide() {
         container.classList.toggle('slide-active');
+        
+        // Apply ScrollReveal after the slide animation
+        setTimeout(() => {
+            ScrollReveal().reveal('.ht2', { delay: 300 });
+        }, 500); // Adjust the timing to ensure the slide is complete
     }
 
     // Toggle between login and sign up
@@ -42,8 +47,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Ensure modal is hidden on page load
-    // This handles cases where the modal might be shown by mistake
     if (successModalElement.classList.contains('show')) {
         successModal.hide();
     }
+
+    // ScrollReveal setup for the initial state
+    ScrollReveal().reveal('.ht1', { delay: 200 });
+    ScrollReveal().reveal('.ht2', { delay: 300 });
+
+    const sr = ScrollReveal({
+        origin: 'left',
+        distance: '80px',
+        duration: 2000,
+        reset: true
+    });
+    sr.reveal('.section-2', { delay: 100 });
+    sr.reveal('.bottomfoot', { delay: 200 });
+
+    const srRight = ScrollReveal({
+        origin: 'right',
+        distance: '120px',
+        duration: 2000,
+        reset: true
+    });
+    srRight.reveal('.ht1', { delay: 200 });
+
+    const srRightnear = ScrollReveal({
+        origin: 'right',
+        distance: '80px',
+        duration: 2000,
+        reset: true
+    });
+    srRightnear.reveal('#loginForm', { delay: 300 });
 });

@@ -77,4 +77,28 @@ body {
     min-height: calc(100vh - 1rem);
 }
 
+.section-2 {
+    display: block; /* Ensure it's set to block or the appropriate display value */
+    visibility: visible; /* Ensure visibility is set */
+}
+
+  
+
 /* Other styles (placeholders, buttons, media queries) remain unchanged */
+
+.section-1 {
+    display: block; /* Ensure it's set to block or the appropriate display value */
+    visibility: visible; /* Ensure visibility is set */
+}
+  
+
+.ht2 {
+    display: block !important; /* Force display */
+    visibility: visible !important; /* Force visibility */
+    opacity: 1 !important; /* Force opacity */
+}
+
+
+.scroll-reveal .ht2 {
+    opacity: 1;
+}
