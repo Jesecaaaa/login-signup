@@ -12,46 +12,58 @@ document.addEventListener("DOMContentLoaded", function () {
     function toggleSlide() {
         container.classList.toggle('slide-active');
         
-        // Apply ScrollReveal after the slide animation
         setTimeout(() => {
             ScrollReveal().reveal('.ht2', { delay: 300 });
-        }, 500); // Adjust the timing to ensure the slide is complete
+        }, 500);
     }
 
-    // Toggle between login and sign up
     toSignUp.addEventListener('click', toggleSlide);
     toLogin.addEventListener('click', toggleSlide);
 
-    // Handle Signup Form Submission
+    // Handle Signup Form Submission with Confirm Password and Regex Validation
     signupForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission behavior
-        successMessage.textContent = 'Your account has been created successfully!';
-        successModal.show(); // Show the modal
+        e.preventDefault();
 
-        // Optionally, redirect after showing the modal
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Regex for password validation: At least one uppercase letter, one lowercase letter, one digit, one special character, and minimum 8 characters.
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passwordPattern.test(password)) {
+            alert('Password must contain at least 8 characters, including an uppercase letter, a lowercase letter, a number, and a special character.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match. Please try again.');
+            return;
+        }
+
+        successMessage.textContent = 'Your account has been created successfully!';
+        successModal.show();
+
         setTimeout(function () {
-            window.location.href = 'index.html'; // Redirect after 2 seconds
+            window.location.href = 'index.html';
         }, 2000);
     });
 
     // Handle Login Form Submission
     loginForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission behavior
+        e.preventDefault();
         successMessage.textContent = 'You have logged in successfully!';
-        successModal.show(); // Show the modal
+        successModal.show();
 
-        // Optionally, redirect after showing the modal
         setTimeout(function () {
-            window.location.href = 'dashboard.html'; // Redirect after 2 seconds
+            window.location.href = 'dashboard.html';
         }, 2000);
     });
 
-    // Ensure modal is hidden on page load
     if (successModalElement.classList.contains('show')) {
         successModal.hide();
     }
 
-    // ScrollReveal setup for the initial state
+    // ScrollReveal setup for animations
     ScrollReveal().reveal('.ht1', { delay: 200 });
     ScrollReveal().reveal('.ht2', { delay: 300 });
 
